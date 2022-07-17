@@ -39,7 +39,7 @@ describe('CreateEdithComponent', () => {
       "type": "test",
       "id_author": 1
     };
-    expect(component.createPokemon(objPokemon)).toBeTruthy();
+    expect(component.createPokemon(objPokemon.id_author)).toBeTruthy();
   });
 
   it('should edit pokemon', () => {
@@ -53,6 +53,6 @@ describe('CreateEdithComponent', () => {
       "type": "test",
       "id_author": 1
     };
-    expect(component.editPokemon(objPokemon)).toBeTruthy();
+    expect(component.editPokemon(objPokemon.id_author, objPokemon)).toBeTruthy();
   });
 });

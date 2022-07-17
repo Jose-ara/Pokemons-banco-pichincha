@@ -1,1 +1,26 @@
-<p>create-edith works!</p>
+<div class="container">
+    <div class="container-title">
+        <h3>Nuevo Pokemon</h3>
+    </div>
+    <form ([formGroup])="formPokemon" (ngSubmit)="createPokemon(1)">
+        <div class="container-form">
+            <div class="formfield">
+                <label>Nombre</label>
+                <input formControlName="name">
+            </div>
+            <div class="formfield">
+                <label>Imagen</label>
+                <input formControlName="image">
+            </div>
+            <div class="formfield">
+                <label>Ataque</label>
+                <input type="range" min="0" max="100" formControlName="attack" [(value)]="pokemonIn.attack">
+            </div>
+            <div class="formfield">
+                <label>Defensa</label>
+                <input type="range" min="0" max="100" formControlName="defense" [(value)]="pokemonIn.defense">
+            </div>
+        </div>
+    </form>
+    <div class="container-button"></div>
+</div>
