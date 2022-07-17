@@ -5,14 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ModalConfirmComponent } from './share/modal-confirm/modal-confirm.component';
-import { ModalEdithCreateComponent } from './pages/modal-edith-create/modal-edith-create.component';
+import { CreateEdithComponent } from './pages/create-edith/create-edith.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ModalConfirmComponent,
-    ModalEdithCreateComponent
+    CreateEdithComponent
   ],
   imports: [
     BrowserModule,

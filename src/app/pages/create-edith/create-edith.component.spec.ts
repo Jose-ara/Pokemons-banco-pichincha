@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalEdithCreateComponent } from './modal-edith-create.component';
+import { CreateEdithComponent } from './create-edith.component';
 
-describe('ModalEdithCreateComponent', () => {
-  let component: ModalEdithCreateComponent;
-  let fixture: ComponentFixture<ModalEdithCreateComponent>;
+describe('CreateEdithComponent', () => {
+  let component: CreateEdithComponent;
+  let fixture: ComponentFixture<CreateEdithComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModalEdithCreateComponent ]
+      declarations: [ CreateEdithComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModalEdithCreateComponent);
+    fixture = TestBed.createComponent(CreateEdithComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
