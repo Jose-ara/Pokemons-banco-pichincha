@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EdithPokemonComponent } from './edith-pokemon.component';
+import { ModalConfirmComponent } from './modal-confirm.component';
 
-describe('EdithPokemonComponent', () => {
-  let component: EdithPokemonComponent;
-  let fixture: ComponentFixture<EdithPokemonComponent>;
+describe('ModalConfirmComponent', () => {
+  let component: ModalConfirmComponent;
+  let fixture: ComponentFixture<ModalConfirmComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EdithPokemonComponent ]
+      declarations: [ ModalConfirmComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EdithPokemonComponent);
+    fixture = TestBed.createComponent(ModalConfirmComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
