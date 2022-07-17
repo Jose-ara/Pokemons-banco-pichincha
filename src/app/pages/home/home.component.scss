@@ -10,7 +10,7 @@
 
 .input-wrapper {
     position: relative;
-    width: 180px;
+    width: 280px;
     display: inline-flex;
   }
   
@@ -46,4 +46,52 @@
     display: flex;
     justify-content: space-between;
   }
-  
+
+  .content-table{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .size-table{
+      width: 100%;
+      margin-top: 20px;
+      height: 550px;
+  }
+
+  table, th, td {
+    border: 1px solid rgb(110, 137, 163);
+    border-collapse: collapse;
+  }
+
+  .center-icon{
+      text-align: center;
+  }
+
+  a:link, a:visited, a:active {
+    text-decoration:none;
+}
+
+.btn{
+    background-color: rgb(184, 159, 201);
+    border-radius: 5px;
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+}
+
+/* .center-actions{
+    display: flex;
+    justify-content: space-evenly;
+} */
+
+.text-fonts{
+    font-family: 'Roboto', sans-serif;
+}
+
+.title-fonts{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}

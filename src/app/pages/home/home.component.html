@@ -1,14 +1,33 @@
 <div class="component">
     <div>
-        <h3 class="text">{{title}}</h3>
+        <h3 class="text title-fonts">{{title}}</h3>
     </div>
     <div class="box">
         <div class="input-wrapper">
-            <input type="search" class="input" placeholder="Buscar">
-            <i class="input-icon"><img src="../../../assets/search.svg" alt=""></i>
+            <input type="search" class="input" placeholder="Buscar por Id de autor">
+            <i class="fa fa-plus input-icon" (click)="searchUser"></i>
         </div>
         <div>
-            <button class="btn box"><i class="fa fa-home"></i> Nuevo</button>  
-        </div> 
+            <button (click)="searchUser" class="btn box"><i class="fa fa-plus"></i> Nuevo</button>
+        </div>
+    </div>
+
+    <div class="content-table">
+        <table class="size-table">
+            <tr class="title-fonts">
+                <th>Nombre</th>
+                <th>Imagen</th>
+                <th>Ataque</th>
+                <th>Defensa</th>
+                <th>Acciones</th>
+            </tr>
+            <tr class="text-fonts" *ngFor="let items of pokemons">
+                <td>{{items.name}}</td>
+                <td class="center-icon"><a class="prueba" [href]="items.image" target="_blank"><i class="fa fa-image"></i></a></td>
+                <td>{{items.attack}}</td>
+                <td>{{items.defense}}</td>
+                <td class="center-actions"><i class="fa fa-image"></i>  <i class="fa fa-image"></i></td>
+            </tr>
+        </table>
     </div>
 </div>
