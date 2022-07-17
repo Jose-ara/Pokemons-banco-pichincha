@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Pokemons-banco-pichincha"
+    }
+  },
+  "defaultProject": "Pokemons-banco-pichincha",
+  "cli": {
+    "analytics": false
+  }
 }
