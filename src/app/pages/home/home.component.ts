@@ -15,15 +15,7 @@ export class HomeComponent implements OnInit {
   public suscripcion: Subscription;
   public idAuthor = '';
   public showCreate: boolean;
-  public pokemonEdit: PokemonModel = {
-    "name": "Jose",
-    "image": "una imagen",
-    "attack": 100,
-    "defense": 90,
-    "hp": 100,
-    "type": "Golden",
-    "idAuthor": 1
-  };
+  public pokemonEdit: PokemonModel;
 
   constructor(
     private pokemonService: PokemonService
@@ -31,13 +23,13 @@ export class HomeComponent implements OnInit {
     this.suscripcion = this.pokemonService.recibirTerminoBusqueda().subscribe(data => {
       this.idAuthor = data;
       this.getPokemons();
-      })
-   }
+    })
+  }
 
   ngOnInit(): void {
   }
 
-  getPokemons(){
+  getPokemons() {
     this.pokemonService.getPokemonByIdAutor(this.idAuthor).subscribe(
       res => {
         this.pokemons = res;
@@ -50,7 +42,7 @@ export class HomeComponent implements OnInit {
   //falta Test
   deletePokemon(pokemon: PokemonModel) {
     this.pokemonService.deletePokemon(pokemon.id).subscribe(res => {
-      this.pokemons.splice(this.pokemons.indexOf(pokemon),1);
+      this.pokemons.splice(this.pokemons.indexOf(pokemon), 1);
     },
       err => {
         console.log('se fue', err);
@@ -59,11 +51,11 @@ export class HomeComponent implements OnInit {
   }
 
   //falta test
-  enviarTerminoBusqueda(){
-/*     if(this.idAuthor === ''){
-      this.pokemonService.setError('Agrega un texto de busqueda');
-    } */
-    
+  enviarTerminoBusqueda() {
+    /*     if(this.idAuthor === ''){
+          this.pokemonService.setError('Agrega un texto de busqueda');
+        } */
+
     this.pokemonService.enviarTerminoBusqueda(this.idAuthor);
   }
 
@@ -71,15 +63,26 @@ export class HomeComponent implements OnInit {
     this.showCreate = true;
   }
 
-  updateTablePokemon(pokemon: PokemonModel){
-    this.pokemons.push(pokemon);
+  updateTablePokemon(pokemon: PokemonModel) {
+    let index: number;
+    if (this.pokemons) {
+      index = this.pokemons.indexOf(this.pokemonEdit ? this.pokemonEdit : pokemon);
+      if (index == -1) {
+        this.pokemons.push(pokemon);
+      } else {
+        this.pokemons[index] = pokemon;
+      }
+    }
+    this.pokemonEdit = null;
   }
 
-  updatePokemon(pokemon: PokemonModel){
+  updatePokemon(pokemon: PokemonModel) {
     this.pokemonEdit = pokemon;
+    this.showCreate = true;
   }
 
   closeCreate(value: boolean) {
     this.showCreate = value;
+    this.pokemonEdit = null;
   }
 }

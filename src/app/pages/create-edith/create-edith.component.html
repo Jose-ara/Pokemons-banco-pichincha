@@ -2,31 +2,34 @@
     <div class="container-title">
         <h3 class="title-fonts">{{title}}</h3>
     </div>
-    <form [formGroup]="formPokemon" (ngSubmit)="createPokemon(2)">
+    <form [formGroup]="formPokemon" (ngSubmit)="pokemonIn ? editPokemon() : createPokemon(2)">
         <div class="container-form">
             <div class="formfield">
                 <label>Nombre:</label>
-                <input [value]="pokemonIn ? pokemonIn.name: ''" class="size-input" formControlName="name">
+                <input [value]="pokemonIn ? pokemonIn.name: objPokemon.name" class="size-input" formControlName="name">
             </div>
             <div class="formfield">
                 <label>Imagen:</label>
-                <input [value]="pokemonIn ? pokemonIn.image: ''" class="size-input" formControlName="image">
+                <input [value]="pokemonIn ? pokemonIn.image: objPokemon.image" class="size-input"
+                    formControlName="image">
             </div>
             <div class="formfield-attack">
                 <label>Ataque:</label>
                 <label>0</label>
-                <div class="estiloNumero">{{pokemonIn ? pokemonIn.attack : 0}}</div>
-                <input type="range" (input)="changeAttack($event)" 
-                [value]="pokemonIn ? pokemonIn.attack : 0" min="0" max="100" class="form-range" id="customRange1" formControlName="attack">
+                <div class="estiloNumero">{{pokemonIn ? pokemonIn.attack : objPokemon.attack}}</div>
+                <input type="range" (input)="changeAttack($event)"
+                    [value]="pokemonIn ? pokemonIn.attack : objPokemon.attack" min="0" max="100" class="form-range"
+                    id="customRange1" formControlName="attack">
                 <!-- <input type="range" min="0" max="100" formControlName="attack" [(value)]="pokemonIn.attack"> -->
                 <label>100</label>
             </div>
             <div class="formfield-defense">
                 <label>Defensa:</label>
                 <label>0</label>
-                <div class="estiloNumero">{{pokemonIn ? pokemonIn.defense : 0}}</div>
-                <input type="range" (input)="changeDefense($event)" 
-                [value]="pokemonIn ? pokemonIn.defense : 0" min="0" max="100" class="form-range" id="customRange1" formControlName="defense">
+                <div class="estiloNumero">{{pokemonIn ? pokemonIn.defense : objPokemon.defense}}</div>
+                <input type="range" (input)="changeDefense($event)"
+                    [value]="pokemonIn ? pokemonIn.defense : objPokemon.defense" min="0" max="100" class="form-range"
+                    id="customRange1" formControlName="defense">
                 <!-- <input type="range" min="0" max="100" formControlName="defense" [(value)]="pokemonIn.defense"> -->
                 <label>100</label>
             </div>

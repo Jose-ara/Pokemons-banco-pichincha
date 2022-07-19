@@ -24,18 +24,18 @@ export class CreateEdithComponent implements OnInit {
   public hp = 60;
   public isEdit = false;
 
-  @Input() pokemonIn: PokemonModel = this.objPokemon;
-  @Input() show: boolean = false;
-
-  @Output() closeEmit = new EventEmitter<boolean>();
-  @Output() sendPokemon = new EventEmitter<PokemonModel>();
-
   public formPokemon = new FormGroup({
     name: new FormControl('', [Validators.required]),
     image: new FormControl('', [Validators.required]),
     attack: new FormControl('', [Validators.required]),
     defense: new FormControl('', [Validators.required])
   });
+
+  @Input() pokemonIn: PokemonModel = this.objPokemon;
+  @Input() show: boolean = false;
+
+  @Output() closeEmit = new EventEmitter<boolean>();
+  @Output() sendPokemon = new EventEmitter<PokemonModel>();
 
   constructor(private pokemonService: PokemonService) { }
 
@@ -49,19 +49,38 @@ export class CreateEdithComponent implements OnInit {
   }
 
   //falta test
-  changeAttack(event: any){
-      this.pokemonIn.attack = event.target.value 
+  changeAttack(event: any) {
+    if (this.pokemonIn) {
+      this.pokemonIn.attack = event.target.value;
+    }
+    else {
+      this.objPokemon.attack = event.target.value;
+    }
   }
 
   //falta test
-  changeDefense(event: any){
-    this.pokemonIn.defense = event.target.value
+  changeDefense(event: any) {
+    if (this.pokemonIn) {
+      this.pokemonIn.defense = event.target.value;
+    }
+    else {
+      this.objPokemon.defense = event.target.value;
+    }
   }
 
-  editPokemon(idAuthor: number, pokemon: PokemonModel): void {
-    this.pokemonService.editPokemon(idAuthor, pokemon).subscribe(
+  editPokemon(): void {
+    let pokemonOut: PokemonModel = { ...this.pokemonIn, "idAuthor": this.pokemonIn.id_author };
+    if (this.formPokemon.get('name').value) pokemonOut.name = this.formPokemon.get('name').value;
+    if (this.formPokemon.get('image').value) pokemonOut.image = this.formPokemon.get('image').value;
+    if (this.formPokemon.get('attack').value) pokemonOut.attack = this.formPokemon.get('attack').value;
+    if (this.formPokemon.get('defense').value) pokemonOut.defense = this.formPokemon.get('defense').value;
+
+    this.pokemonService.editPokemon(pokemonOut.id, pokemonOut).subscribe(
       res => {
-        console.log(res);
+        this.formPokemon.reset();
+        this.sendPokemon.emit(res);
+        this.resetObj();
+        this.close(false);
       },
       err => {
         console.log(err);
@@ -70,7 +89,7 @@ export class CreateEdithComponent implements OnInit {
   }
 
   createPokemon(idAuthor: number): void {
-    let pokemon : PokemonModel = {
+    let pokemon: PokemonModel = {
       ...this.formPokemon.getRawValue(),
       "hp": 100,
       "idAuthor": idAuthor,
@@ -86,6 +105,13 @@ export class CreateEdithComponent implements OnInit {
         this.formPokemon.reset();
       }
     );
+  }
+
+  resetObj() {
+    this.objPokemon.attack = 0;
+    this.objPokemon.defense = 0;
+    this.objPokemon.name = "";
+    this.objPokemon.image = "";
   }
 
 }
