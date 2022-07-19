@@ -7,6 +7,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ModalConfirmComponent } from './share/modal-confirm/modal-confirm.component';
 import { CreateEdithComponent } from './pages/create-edith/create-edith.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

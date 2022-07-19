@@ -14,11 +14,14 @@ export class CreateEdithComponent implements OnInit {
     "name": "pokemon 11",
     "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/006_f3.png",
     "attack": 90,
-    "defense": 93,
+    "defense": 13,
     "hp": 100,
     "type": "Golden",
     "idAuthor": 1
   };
+
+  public title = 'Nuevo Pokemon';
+  public hp = 60;
 
   @Input() pokemonIn: PokemonModel = this.objPokemon;
 
@@ -39,6 +42,16 @@ export class CreateEdithComponent implements OnInit {
 
   close(): void {
     this.show = false;
+  }
+
+  //falta test
+  changeAttack(event: any){
+    this.pokemonIn.attack = event.target.value
+  }
+
+  //falta test
+  changeDefense(event: any){
+    this.pokemonIn.defense = event.target.value
   }
 
   editPokemon(idAuthor: number, pokemon: PokemonModel): void {

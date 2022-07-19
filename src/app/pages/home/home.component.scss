@@ -19,27 +19,42 @@
     padding: 10px 10px 10px 35px;
     width: 100%;
   }
+
+  a:link, a:visited,  a:hover, a:active{
+    color: #524b4b;
+    text-decoration: none;
+  }
   
   .input-icon {
+    cursor: pointer;
     position: absolute;
     left: 12px;
     top: 50%;
     transform: translateY(-50%);
   }
 
-  .btn {
-    background-color: DodgerBlue;
+  .btn{
+    background-color: rgb(98, 79, 184);
     border-radius: 5px;
-    color: white; 
-    padding: 12px 16px; 
+    color: white;
+    padding: 12px 16px;
     font-size: 16px;
     cursor: pointer;
     border: none;
+}
+
+  .color-icon{
+    color: rgb(98, 79, 184);
+    margin: 0 15px;
+    cursor: pointer;
   }
-  
-  /* Darker background on mouse-over */
+
+  .center-actions{
+    text-align: center;
+  }
+
   .btn:hover {
-    background-color: RoyalBlue;
+    background-color: rgb(72, 47, 187);
   }
 
   .box {
@@ -56,7 +71,7 @@
   .size-table{
       width: 100%;
       margin-top: 20px;
-      height: 550px;
+      height: 260px;
   }
 
   table, th, td {
@@ -71,21 +86,6 @@
   a:link, a:visited, a:active {
     text-decoration:none;
 }
-
-.btn{
-    background-color: rgb(184, 159, 201);
-    border-radius: 5px;
-    color: white;
-    padding: 12px 16px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-}
-
-/* .center-actions{
-    display: flex;
-    justify-content: space-evenly;
-} */
 
 .text-fonts{
     font-family: 'Roboto', sans-serif;

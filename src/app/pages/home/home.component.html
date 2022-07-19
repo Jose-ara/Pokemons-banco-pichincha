@@ -2,14 +2,16 @@
     <div>
         <h3 class="text title-fonts">{{title}}</h3>
     </div>
-    <div class="box">
-        <div class="input-wrapper">
-            <input type="search" class="input" placeholder="Buscar por Id de autor">
-            <i class="fa fa-plus input-icon" (click)="searchUser"></i>
-        </div>
-        <div>
-            <button (click)="searchUser" class="btn box"><i class="fa fa-plus"></i> Nuevo</button>
-        </div>
+    <div>
+        <form class="box" (ngSubmit)="enviarTerminoBusqueda()">
+            <div class="input-wrapper">
+                <input type="search" name="authors" [(ngModel)]="idAuthor" class="input" placeholder="Buscar por Id de autor">
+                <i type="submit" class="fa fa-search input-icon"></i>
+            </div>
+            <div>
+                <button type="submit" class="btn"><i class="fa fa-plus"></i> Nuevo</button>
+            </div>
+        </form>
     </div>
 
     <div class="content-table">
@@ -23,10 +25,12 @@
             </tr>
             <tr class="text-fonts" *ngFor="let items of pokemons">
                 <td>{{items.name}}</td>
-                <td class="center-icon"><a class="prueba" [href]="items.image" target="_blank"><i class="fa fa-image"></i></a></td>
+                <td class="center-icon"><a class="prueba" [href]="items.image" target="_blank">
+                    <i class="fa fa-image"></i></a></td>
                 <td>{{items.attack}}</td>
                 <td>{{items.defense}}</td>
-                <td class="center-actions"><i class="fa fa-image"></i>  <i class="fa fa-image"></i></td>
+                <td class="center-actions"><i class="fa fa-pencil color-icon"></i>
+                    <i class="fa fa-trash color-icon"></i></td>
             </tr>
         </table>
     </div>

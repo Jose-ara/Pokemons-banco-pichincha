@@ -1,25 +1,39 @@
 <div class="container">
     <div class="container-title">
-        <h3>Nuevo Pokemon</h3>
+        <h3 class="title-fonts">{{title}}</h3>
     </div>
     <form ([formGroup])="formPokemon" (ngSubmit)="createPokemon(1)">
         <div class="container-form">
             <div class="formfield">
-                <label>Nombre</label>
-                <input formControlName="name">
+                <label>Nombre:</label>
+                <input class="size-input" formControlName="name">
             </div>
             <div class="formfield">
-                <label>Imagen</label>
-                <input formControlName="image">
+                <label>Imagen:</label>
+                <input class="size-input" formControlName="image">
             </div>
-            <div class="formfield">
-                <label>Ataque</label>
-                <input type="range" min="0" max="100" formControlName="attack" [(value)]="pokemonIn.attack">
+            <div class="formfield-attack">
+                <label>Ataque:</label>
+                <label>0</label>
+                <div class="estiloNumero">{{pokemonIn.attack}}</div>
+                <input type="range" (input)="changeAttack($event)" 
+                [value]="pokemonIn.attack" min="0" max="100" class="form-range" id="customRange1" formControlName="attack">
+                <!-- <input type="range" min="0" max="100" formControlName="attack" [(value)]="pokemonIn.attack"> -->
+                <label>100</label>
             </div>
-            <div class="formfield">
-                <label>Defensa</label>
-                <input type="range" min="0" max="100" formControlName="defense" [(value)]="pokemonIn.defense">
+            <div class="formfield-defense">
+                <label>Defensa:</label>
+                <label>0</label>
+                <div class="estiloNumero">{{pokemonIn.defense}}</div>
+                <input type="range" (input)="changeDefense($event)" 
+                [value]="pokemonIn.defense" min="0" max="100" class="form-range" id="customRange1" formControlName="defense">
+                <!-- <input type="range" min="0" max="100" formControlName="defense" [(value)]="pokemonIn.defense"> -->
+                <label>100</label>
             </div>
+        </div>
+        <div class="center-buttons">
+            <button type="submit" class="btn"><i class="fa fa-floppy-o"></i> Guardar</button>
+            <button type="submit" class="btn"><i class="fa fa-times"></i> Cancelar</button>
         </div>
     </form>
     <div class="container-button"></div>
