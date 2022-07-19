@@ -2,7 +2,7 @@
     <div class="container-title">
         <h3 class="title-fonts">{{title}}</h3>
     </div>
-    <form ([formGroup])="formPokemon" (ngSubmit)="createPokemon(1)">
+    <form [formGroup]="formPokemon" (ngSubmit)="createPokemon(2)">
         <div class="container-form">
             <div class="formfield">
                 <label>Nombre:</label>
@@ -33,8 +33,7 @@
         </div>
         <div class="center-buttons">
             <button type="submit" class="btn"><i class="fa fa-floppy-o"></i> Guardar</button>
-            <button type="submit" class="btn"><i class="fa fa-times"></i> Cancelar</button>
+            <button class="btn"><i class="fa fa-times"></i> Cancelar</button>
         </div>
     </form>
-    <div class="container-button"></div>
 </div>

@@ -22,14 +22,15 @@ export class CreateEdithComponent implements OnInit {
 
   public title = 'Nuevo Pokemon';
   public hp = 60;
+  public isEdit = false;
 
   @Input() pokemonIn: PokemonModel = this.objPokemon;
 
-  formPokemon: FormGroup = new FormGroup({
-    name: new FormControl(null, [Validators.required]),
-    image: new FormControl(null, [Validators.required]),
-    attack: new FormControl(null, [Validators.required]),
-    defense: new FormControl(null, [Validators.required])
+  public formPokemon = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+    image: new FormControl('', [Validators.required]),
+    attack: new FormControl('', [Validators.required]),
+    defense: new FormControl('', [Validators.required])
   });
   show: boolean = false;
 
@@ -46,7 +47,7 @@ export class CreateEdithComponent implements OnInit {
 
   //falta test
   changeAttack(event: any){
-    this.pokemonIn.attack = event.target.value
+      this.pokemonIn.attack = event.target.value 
   }
 
   //falta test
@@ -75,9 +76,11 @@ export class CreateEdithComponent implements OnInit {
     this.pokemonService.createPokemon(idAuthor, pokemon).subscribe(
       res => {
         console.log(res);
+        this.formPokemon.reset();
       },
       err => {
         console.log(err);
+        this.formPokemon.reset();
       }
     );
   }

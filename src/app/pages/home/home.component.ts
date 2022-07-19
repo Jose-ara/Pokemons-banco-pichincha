@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
   getPokemons(){
     this.pokemonService.getPokemonByIdAutor(this.idAuthor).subscribe(
       res => {
+        console.log('RESSS', res);
         this.pokemons = res;
         console.log(res);
       },
@@ -38,6 +39,10 @@ export class HomeComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  deletePokemon(){
+
   }
 
   //falta test
