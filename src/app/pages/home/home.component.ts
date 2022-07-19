@@ -14,6 +14,16 @@ export class HomeComponent implements OnInit {
   public pokemons: PokemonModel[];
   public suscripcion: Subscription;
   public idAuthor = '';
+  public showCreate: boolean;
+  public pokemonEdit: PokemonModel = {
+    "name": "Jose",
+    "image": "una imagen",
+    "attack": 100,
+    "defense": 90,
+    "hp": 100,
+    "type": "Golden",
+    "idAuthor": 1
+  };
 
   constructor(
     private pokemonService: PokemonService
@@ -25,27 +35,27 @@ export class HomeComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.getPokemons();
   }
 
   getPokemons(){
     this.pokemonService.getPokemonByIdAutor(this.idAuthor).subscribe(
       res => {
-        console.log('RESSS', res);
         this.pokemons = res;
-        console.log(res);
       },
       err => {
-        console.log(err);
       }
     );
   }
 
   //falta Test
-  deletePokemon(id: number){
-    this.pokemonService.deletePokemon(id).subscribe( res => {
-        console.log('se fue', res);
-    })
+  deletePokemon(pokemon: PokemonModel) {
+    this.pokemonService.deletePokemon(pokemon.id).subscribe(res => {
+      this.pokemons.splice(this.pokemons.indexOf(pokemon),1);
+    },
+      err => {
+        console.log('se fue', err);
+      }
+    );
   }
 
   //falta test
@@ -55,5 +65,21 @@ export class HomeComponent implements OnInit {
     } */
     
     this.pokemonService.enviarTerminoBusqueda(this.idAuthor);
+  }
+
+  save() {
+    this.showCreate = true;
+  }
+
+  updateTablePokemon(pokemon: PokemonModel){
+    this.pokemons.push(pokemon);
+  }
+
+  updatePokemon(pokemon: PokemonModel){
+    this.pokemonEdit = pokemon;
+  }
+
+  closeCreate(value: boolean) {
+    this.showCreate = value;
   }
 }

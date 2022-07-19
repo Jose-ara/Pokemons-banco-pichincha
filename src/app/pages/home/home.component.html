@@ -9,7 +9,7 @@
                 <i type="submit" class="fa fa-search input-icon"></i>
             </div>
             <div>
-                <button type="submit" class="btn"><i class="fa fa-plus"></i> Nuevo</button>
+                <button type="button" (click)="save()"  class="btn"><i class="fa fa-plus"></i> Nuevo</button>
             </div>
         </form>
     </div>
@@ -29,10 +29,10 @@
                     <i class="fa fa-image"></i></a></td>
                 <td>{{items.attack}}</td>
                 <td>{{items.defense}}</td>
-                <td class="center-actions"><i class="fa fa-pencil color-icon"></i>
-                    <i class="fa fa-trash color-icon" (click)="deletePokemon(items.id)"></i></td>
+                <td class="center-actions"><i (click)="updatePokemon(items)" class="fa fa-pencil color-icon"></i>
+                    <i class="fa fa-trash color-icon" (click)="deletePokemon(items)"></i></td>
             </tr>
         </table>
     </div>
-    <app-create-edith class="container" [pokemonIn]=""></app-create-edith>
+    <app-create-edith (sendPokemon)="updateTablePokemon($event)"  (closeEmit)="closeCreate($event)" [show]="showCreate" class="container" [(pokemonIn)]="pokemonEdit"></app-create-edith>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PokemonModel } from 'src/app/domain/model/pokemon-model';
 import { PokemonService } from 'src/app/domain/services/pokemon/pokemon.service';
@@ -11,10 +11,10 @@ import { PokemonService } from 'src/app/domain/services/pokemon/pokemon.service'
 export class CreateEdithComponent implements OnInit {
 
   objPokemon: PokemonModel = {
-    "name": "pokemon 11",
-    "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/006_f3.png",
-    "attack": 90,
-    "defense": 13,
+    "name": "",
+    "image": "",
+    "attack": 0,
+    "defense": 0,
     "hp": 100,
     "type": "Golden",
     "idAuthor": 1
@@ -25,6 +25,10 @@ export class CreateEdithComponent implements OnInit {
   public isEdit = false;
 
   @Input() pokemonIn: PokemonModel = this.objPokemon;
+  @Input() show: boolean = false;
+
+  @Output() closeEmit = new EventEmitter<boolean>();
+  @Output() sendPokemon = new EventEmitter<PokemonModel>();
 
   public formPokemon = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -32,7 +36,6 @@ export class CreateEdithComponent implements OnInit {
     attack: new FormControl('', [Validators.required]),
     defense: new FormControl('', [Validators.required])
   });
-  show: boolean = false;
 
   constructor(private pokemonService: PokemonService) { }
 
@@ -41,8 +44,8 @@ export class CreateEdithComponent implements OnInit {
     //this.editPokemon(909, this.objPokemon);
   }
 
-  close(): void {
-    this.show = false;
+  close(value: boolean): void {
+    this.closeEmit.emit(value);
   }
 
   //falta test
@@ -75,11 +78,11 @@ export class CreateEdithComponent implements OnInit {
     };
     this.pokemonService.createPokemon(idAuthor, pokemon).subscribe(
       res => {
-        console.log(res);
         this.formPokemon.reset();
+        this.sendPokemon.emit(pokemon);
+        this.close(false);
       },
       err => {
-        console.log(err);
         this.formPokemon.reset();
       }
     );
