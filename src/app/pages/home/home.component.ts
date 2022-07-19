@@ -41,8 +41,11 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  deletePokemon(){
-
+  //falta Test
+  deletePokemon(id: number){
+    this.pokemonService.deletePokemon(id).subscribe( res => {
+        console.log('se fue', res);
+    })
   }
 
   //falta test
