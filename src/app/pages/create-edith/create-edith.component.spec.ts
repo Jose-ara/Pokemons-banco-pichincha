@@ -1,9 +1,16 @@
+import { HttpClient } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpsService } from 'src/app/domain/services/http.service';
+import { PokemonService } from 'src/app/domain/services/pokemon/pokemon.service';
 import { CreateEdithComponent } from './create-edith.component';
 
 describe('CreateEdithComponent', () => {
-  let component: CreateEdithComponent;
+  
   let fixture: ComponentFixture<CreateEdithComponent>;
+  let httpCliente: HttpClient;
+  let http: HttpsService;
+  let pokemonService : PokemonService;
+  let component: CreateEdithComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -13,8 +20,10 @@ describe('CreateEdithComponent', () => {
   }));
 
   beforeEach(() => {
+    http = new HttpsService(httpCliente);
+    pokemonService = new PokemonService(http);
     fixture = TestBed.createComponent(CreateEdithComponent);
-    component = fixture.componentInstance;
+    component = new CreateEdithComponent(pokemonService);
     fixture.detectChanges();
   });
 
@@ -23,9 +32,8 @@ describe('CreateEdithComponent', () => {
   });
 
   it('should close component create edit', () => {
-    component.show = true;
-    component.close();
-    expect(component.show).toEqual(false);
+    component.close(false);
+    expect(component.closeEmit.emit()).toHaveBeenCalled();
   });
 
   it('should create pokemon', () => {
@@ -53,6 +61,7 @@ describe('CreateEdithComponent', () => {
       "type": "test",
       "id_author": 1
     };
-    expect(component.editPokemon(objPokemon.id_author, objPokemon)).toBeTruthy();
+    component.pokemonIn = {...objPokemon, "idAuthor": objPokemon.id_author };
+    expect(component.editPokemon()).toBeTruthy();
   });
 });

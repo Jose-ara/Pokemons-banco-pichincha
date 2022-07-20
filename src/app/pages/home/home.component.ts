@@ -46,7 +46,6 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  //falta Test
   deletePokemon(value: any) {
     if (value.option) {
       let pokemon = value.pokemon;
@@ -54,18 +53,12 @@ export class HomeComponent implements OnInit {
         this.pokemons.splice(this.pokemons.indexOf(pokemon), 1);
       },
         err => {
-          console.log('se fue', err);
         }
       );
     }
   }
 
-  //falta test
   enviarTerminoBusqueda() {
-    /*     if(this.idAuthor === ''){
-          this.pokemonService.setError('Agrega un texto de busqueda');
-        } */
-
     this.pokemonService.enviarTerminoBusqueda(this.idAuthor);
   }
 

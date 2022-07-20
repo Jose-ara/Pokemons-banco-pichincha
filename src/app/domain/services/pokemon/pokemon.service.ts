@@ -8,29 +8,20 @@ import { HttpsService } from '../http.service';
 })
 export class PokemonService {
 
-//falta estudiar el subject
 private error = new Subject<string>();
 private terminoBusqueda = new Subject<string>();
 
 constructor(private https: HttpsService) { }
 
-//falta test
-/* setError(mensaje: string){
-  this.error.next(mensaje);
-} */
-
-//falta test
 enviarTerminoBusqueda(termino: string){
   this.terminoBusqueda.next(termino);
 }
 
-//falta test
 recibirTerminoBusqueda(): Observable<string>{
   return this.terminoBusqueda.asObservable();
 }
 
 getPokemonByIdAutor(idAutor: string): Observable<Array<PokemonModel>> {
-  console.log(`?idAuthor=${idAutor}`);
   return this.https.get({
     url: `?idAuthor=${idAutor}`
   });

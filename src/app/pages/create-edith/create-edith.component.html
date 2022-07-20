@@ -6,11 +6,11 @@
         <div class="container-form">
             <div class="formfield">
                 <label>Nombre:</label>
-                <input [value]="pokemonIn ? pokemonIn.name: objPokemon.name" class="size-input" formControlName="name">
+                <input required [value]="pokemonIn ? pokemonIn.name: objPokemon.name" class="size-input" formControlName="name">
             </div>
             <div class="formfield">
                 <label>Imagen:</label>
-                <input [value]="pokemonIn ? pokemonIn.image: objPokemon.image" class="size-input"
+                <input required [value]="pokemonIn ? pokemonIn.image: objPokemon.image" class="size-input" placeholder="Url"
                     formControlName="image">
             </div>
             <div class="formfield-attack">
@@ -20,7 +20,6 @@
                 <input type="range" (input)="changeAttack($event)"
                     [value]="pokemonIn ? pokemonIn.attack : objPokemon.attack" min="0" max="100" class="form-range"
                     id="customRange1" formControlName="attack">
-                <!-- <input type="range" min="0" max="100" formControlName="attack" [(value)]="pokemonIn.attack"> -->
                 <label>100</label>
             </div>
             <div class="formfield-defense">
@@ -30,7 +29,6 @@
                 <input type="range" (input)="changeDefense($event)"
                     [value]="pokemonIn ? pokemonIn.defense : objPokemon.defense" min="0" max="100" class="form-range"
                     id="customRange1" formControlName="defense">
-                <!-- <input type="range" min="0" max="100" formControlName="defense" [(value)]="pokemonIn.defense"> -->
                 <label>100</label>
             </div>
         </div>

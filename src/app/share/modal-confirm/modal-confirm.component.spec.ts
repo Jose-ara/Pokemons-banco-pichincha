@@ -22,4 +22,16 @@ describe('ModalConfirmComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should open', () => {
+    component.showModal=false;
+    component.open();
+    expect(component.showModal).toEqual(true);
+  });
+
+  it('should Close', () => {
+    component.showModal=true;
+    component.close();
+    expect(component.showModal).toEqual(false);
+  });
 });

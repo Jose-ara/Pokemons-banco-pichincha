@@ -7,15 +7,15 @@
             <p>{{data.text}}</p>
         </div>
         <div class="container-action">
-            <div>
-                <button *ngIf="showAction" type="button" class="btn-success" (click)="send(true)">Aceptar</button>
-            </div>
-            <div>
-                <button *ngIf="showAction" type="button" class="btn-cancel" (click)="send(false)">Cancelar</button>
-            </div>
-            <div>
-                <button *ngIf="!showAction" type="button" class="btn-cancel" (click)="send(false)">Cerrar</button>
-            </div>
+                <div>
+                    <button *ngIf="showAction" class="btn btn-confirm" (click)="send(true)"><i class="fa fa-check"></i>Aceptar</button>
+                </div>
+                <div>
+                    <button *ngIf="showAction" class="btn btn-cancel" (click)="send(false)"><i class="fa fa-times"></i> Cancelar</button>
+                </div>
+                <div>
+                    <button *ngIf="!showAction" class="btn btn-closed" (click)="send(false)"><i class="fa fa-sign-out"></i>Cerrar</button>
+                </div>
         </div>
     </div>
 </div>

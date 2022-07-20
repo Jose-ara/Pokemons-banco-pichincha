@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-modal-confirm',
   templateUrl: './modal-confirm.component.html',
   styleUrls: ['./modal-confirm.component.scss']
 })
-export class ModalConfirmComponent implements OnInit {
+export class ModalConfirmComponent {
 
   @Input() data: any;
   @Input() showAction: boolean = true;
@@ -14,9 +14,6 @@ export class ModalConfirmComponent implements OnInit {
 
   public showModal: boolean = false;
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   open() {
     this.showModal = true;

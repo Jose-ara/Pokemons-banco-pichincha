@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PokemonModel } from 'src/app/domain/model/pokemon-model';
 import { PokemonService } from 'src/app/domain/services/pokemon/pokemon.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-edith',
@@ -22,7 +23,6 @@ export class CreateEdithComponent implements OnInit {
 
   public title = 'Nuevo Pokemon';
   public hp = 60;
-  public isEdit = false;
 
   public formPokemon = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -37,18 +37,17 @@ export class CreateEdithComponent implements OnInit {
   @Output() closeEmit = new EventEmitter<boolean>();
   @Output() sendPokemon = new EventEmitter<PokemonModel>();
 
-  constructor(private pokemonService: PokemonService) { }
+  constructor(
+    private pokemonService: PokemonService,
+    ) { }
 
   ngOnInit(): void {
-    // this.createPokemon(1, this.objPokemon);
-    //this.editPokemon(909, this.objPokemon);
   }
 
   close(value: boolean): void {
     this.closeEmit.emit(value);
   }
 
-  //falta test
   changeAttack(event: any) {
     if (this.pokemonIn) {
       this.pokemonIn.attack = event.target.value;
@@ -58,7 +57,6 @@ export class CreateEdithComponent implements OnInit {
     }
   }
 
-  //falta test
   changeDefense(event: any) {
     if (this.pokemonIn) {
       this.pokemonIn.defense = event.target.value;
@@ -83,12 +81,17 @@ export class CreateEdithComponent implements OnInit {
         this.close(false);
       },
       err => {
-        console.log(err);
       }
     );
   }
 
   createPokemon(idAuthor: number): void {
+    if (this.formPokemon.get('name').value == '') {
+      Swal.fire('Debe agregar El nombre de pokemon');
+    }
+    if (this.formPokemon.get('image').value == '') {
+      Swal.fire('Debe agregar la imagen del pokemon' );
+    }
     let pokemon: PokemonModel = {
       ...this.formPokemon.getRawValue(),
       "hp": 100,
