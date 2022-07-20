@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PokemonModel } from 'src/app/domain/model/pokemon-model';
 import { PokemonService } from 'src/app/domain/services/pokemon/pokemon.service';
+import { ModalConfirmComponent } from 'src/app/share/modal-confirm/modal-confirm.component';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +17,12 @@ export class HomeComponent implements OnInit {
   public idAuthor = '';
   public showCreate: boolean;
   public pokemonEdit: PokemonModel;
+  public confirmDeleteData: any = {
+    "title": "Confirmar Eliminar",
+    "text": "¿Esta seguro que desea eliminar este pokemon?",
+  }
+
+  @ViewChild(ModalConfirmComponent) modal: ModalConfirmComponent;
 
   constructor(
     private pokemonService: PokemonService
@@ -40,14 +47,17 @@ export class HomeComponent implements OnInit {
   }
 
   //falta Test
-  deletePokemon(pokemon: PokemonModel) {
-    this.pokemonService.deletePokemon(pokemon.id).subscribe(res => {
-      this.pokemons.splice(this.pokemons.indexOf(pokemon), 1);
-    },
-      err => {
-        console.log('se fue', err);
-      }
-    );
+  deletePokemon(value: any) {
+    if (value.option) {
+      let pokemon = value.pokemon;
+      this.pokemonService.deletePokemon(pokemon.id).subscribe(res => {
+        this.pokemons.splice(this.pokemons.indexOf(pokemon), 1);
+      },
+        err => {
+          console.log('se fue', err);
+        }
+      );
+    }
   }
 
   //falta test
@@ -84,5 +94,13 @@ export class HomeComponent implements OnInit {
   closeCreate(value: boolean) {
     this.showCreate = value;
     this.pokemonEdit = null;
+  }
+
+  ConfirmDelete(pokemon: PokemonModel) {
+    this.confirmDeleteData = {
+      ...this.confirmDeleteData,
+      "pokemon": pokemon
+    };
+    this.modal.open();
   }
 }

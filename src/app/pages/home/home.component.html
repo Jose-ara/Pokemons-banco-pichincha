@@ -5,11 +5,12 @@
     <div>
         <form class="box" (ngSubmit)="enviarTerminoBusqueda()">
             <div class="input-wrapper">
-                <input type="search" name="authors" [(ngModel)]="idAuthor" class="input" placeholder="Buscar por Id de autor">
+                <input type="search" name="authors" [(ngModel)]="idAuthor" class="input"
+                    placeholder="Buscar por Id de autor">
                 <i type="submit" class="fa fa-search input-icon"></i>
             </div>
             <div>
-                <button type="button" (click)="save()"  class="btn"><i class="fa fa-plus"></i> Nuevo</button>
+                <button type="button" (click)="save()" class="btn"><i class="fa fa-plus"></i> Nuevo</button>
             </div>
         </form>
     </div>
@@ -26,13 +27,16 @@
             <tr class="text-fonts" *ngFor="let items of pokemons">
                 <td>{{items.name}}</td>
                 <td class="center-icon"><a class="prueba" [href]="items.image" target="_blank">
-                    <i class="fa fa-image"></i></a></td>
+                        <i class="fa fa-image"></i></a></td>
                 <td>{{items.attack}}</td>
                 <td>{{items.defense}}</td>
                 <td class="center-actions"><i (click)="updatePokemon(items)" class="fa fa-pencil color-icon"></i>
-                    <i class="fa fa-trash color-icon" (click)="deletePokemon(items)"></i></td>
+                    <i class="fa fa-trash color-icon" (click)="ConfirmDelete(items)"></i>
+                </td>
             </tr>
         </table>
     </div>
-    <app-create-edith (sendPokemon)="updateTablePokemon($event)"  (closeEmit)="closeCreate($event)" [show]="showCreate" class="container" [(pokemonIn)]="pokemonEdit"></app-create-edith>
+    <app-create-edith (sendPokemon)="updateTablePokemon($event)" (closeEmit)="closeCreate($event)" [show]="showCreate"
+    class="container" [(pokemonIn)]="pokemonEdit"></app-create-edith>
 </div>
+<app-modal-confirm [data]="confirmDeleteData" (saveEmit)="deletePokemon($event)"></app-modal-confirm>
